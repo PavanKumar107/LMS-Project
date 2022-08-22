@@ -1,5 +1,4 @@
 package com.blz.lms.exception;
-
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus

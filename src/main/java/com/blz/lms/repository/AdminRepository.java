@@ -8,5 +8,4 @@ import com.blz.lms.model.AdminModel;
 @Repository
 public interface AdminRepository extends JpaRepository<AdminModel, Long>{
 	Optional<AdminModel> findByEmailId(String emailId);
-
 }

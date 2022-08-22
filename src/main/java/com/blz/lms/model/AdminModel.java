@@ -27,20 +27,20 @@ public class AdminModel {
 	private String password;
 	private LocalDateTime creatorStamp;
 	private LocalDateTime updatedStamp;
-	
+
 	public AdminModel() {
-		
+
 	}
-	
-public AdminModel(AdminDTO adminDTO) {
-	this.firstName = adminDTO.getFirstName();
-	this.lastName = adminDTO.getLastName();
-	this.mobile = adminDTO.getMobile();
-	this.emailId = adminDTO.getEmailId();
-	this.profilePath = adminDTO.getProfilePath();
-	this.status = adminDTO.isStatus();
-	this.password = adminDTO.getPassword();
-	this.creatorStamp = adminDTO.getCreatorStamp();
-	this.updatedStamp = adminDTO.getUpdatedStamp();
+
+	public AdminModel(AdminDTO adminDTO) {
+		this.firstName = adminDTO.getFirstName();
+		this.lastName = adminDTO.getLastName();
+		this.mobile = adminDTO.getMobile();
+		this.emailId = adminDTO.getEmailId();
+		this.profilePath = adminDTO.getProfilePath();
+		this.status = adminDTO.isStatus();
+		this.password = adminDTO.getPassword();
+		this.creatorStamp = adminDTO.getCreatorStamp();
+		this.updatedStamp = adminDTO.getUpdatedStamp();
 	}
 }

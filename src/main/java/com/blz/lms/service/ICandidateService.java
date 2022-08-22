@@ -9,12 +9,14 @@ public interface ICandidateService {
 
 	CandidateModel updateCandidate(CandidateDTO candidateDTO,Long id,String token);
 
-	List<CandidateModel>getAllCandidates(String token);
+	List<CandidateModel> getAllCandidates(String token);
 
 	CandidateModel deleteCandidate(Long id,String token);
 	
-	List<CandidateModel> getCandidateByStatus(String status);
+	List<CandidateModel> getCandidateByStatus(String status,String token);
 	
-	CandidateModel ChangeStatus(Long id,String token);
+	CandidateModel ChangeStatus(Long id,String status,String token);
+	
+	long statusCount(String status,String token);
 
 }

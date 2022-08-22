@@ -1,6 +1,8 @@
 package com.blz.lms.controller;
-
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,19 +19,19 @@ import com.blz.lms.model.CandidateModel;
 import com.blz.lms.service.ICandidateService;
 
 @RestController
-@RequestMapping
+@RequestMapping("/candidate")
 public class CandidateController {
 
 	@Autowired
 	ICandidateService candidateService;
 
 	@PostMapping("/addcandidate")
-	public CandidateModel addCandidate(@RequestBody CandidateDTO candidateDTO,@RequestHeader String token) {
+	public CandidateModel addCandidate(@Valid@RequestBody CandidateDTO candidateDTO,@RequestHeader String token) {
 		return candidateService.addCandidate(candidateDTO,token);
 	}
 
 	@PutMapping("/updatecandidate/{id}")
-	public CandidateModel updateCandidate(@RequestBody CandidateDTO candidateDTO,@PathVariable Long id,@RequestHeader String token) {
+	public CandidateModel updateCandidate(@Valid@RequestBody CandidateDTO candidateDTO,@PathVariable Long id,@RequestHeader String token) {
 		return candidateService.updateCandidate(candidateDTO, id, token);
 	}
 
@@ -44,12 +46,18 @@ public class CandidateController {
 	}
 
 	@GetMapping("/getbystatus/{status}")
-	public List<CandidateModel> getCandidateByStatus(@PathVariable String status){
-		return candidateService.getCandidateByStatus(status);
+	public List<CandidateModel> getCandidateByStatus(@PathVariable String status,@RequestHeader String token){
+		return candidateService.getCandidateByStatus(status,token);
 	}
 
 	@PutMapping("/changestatus/{id}")
-	public CandidateModel ChangeStatus(@PathVariable Long id,@RequestParam String status) {
-		return candidateService.ChangeStatus(id,status);
+	public CandidateModel ChangeStatus(@Valid@PathVariable Long id,@RequestParam String status,@RequestHeader String token) {
+		return candidateService.ChangeStatus(id,status,token);
+	}
+	
+	
+	@GetMapping("/getstatuscount")
+	public long statusCount(@RequestParam String status,@RequestHeader String token) {
+		return candidateService.statusCount(status, token);
 	}
 }

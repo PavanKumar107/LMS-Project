@@ -1,5 +1,4 @@
 package com.blz.lms.service;
-
 import java.util.List;
 import java.util.Optional;
 import com.blz.lms.dto.AdminDTO;
@@ -12,9 +11,9 @@ public interface IAdminService {
 	
 	AdminModel updateAdmin(AdminDTO adminDTO,Long id,String token);
 	
-	List<AdminModel>getAllAdmins(String token);
+	List<AdminModel> getAllAdmins(String token);
 	
-	Optional<AdminModel>getAdminById(Long id,String token);
+	Optional<AdminModel> getAdminById(Long id,String token);
 	
 	AdminModel deleteAdmin(Long id,String token);
 	
@@ -24,4 +23,5 @@ public interface IAdminService {
 
 	AdminModel changePassword(String token, String password);
 
+	AdminModel addProfilePath(Long id,String profilePath,String token);
 }

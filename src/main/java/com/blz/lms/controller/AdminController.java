@@ -1,7 +1,9 @@
 package com.blz.lms.controller;
-
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +28,12 @@ public class AdminController {
 	IAdminService adminService;
 	
 	@PostMapping("/addadmin")
-	public AdminModel addAdmin(@RequestBody AdminDTO adminDTO) {
+	public AdminModel addAdmin(@Valid@RequestBody AdminDTO adminDTO) {
 		return adminService.addAdmin(adminDTO);
 	}
 	
 	@PutMapping("/updateadmin/{id}")
-	public AdminModel updateAdmin(@RequestBody AdminDTO adminDTO,@PathVariable Long id,@RequestHeader String token) {
+	public AdminModel updateAdmin(@Valid@RequestBody AdminDTO adminDTO,@PathVariable Long id,@RequestHeader String token) {
 		return adminService.updateAdmin(adminDTO, id,token);
 	}
 	
@@ -60,8 +62,13 @@ public class AdminController {
         return adminService.resetPassword(emailId);
     }
 
-    @PutMapping("/changepassword/{id}")
+    @PutMapping("/changepassword/{token}")
     public AdminModel changePassword(@PathVariable String token, @RequestParam String password) {
         return adminService.changePassword(token, password);
+    }
+    
+    @PostMapping("/addprofilepath")
+	public AdminModel addProfilePath(@RequestBody Long id,@RequestParam String profilePath,@RequestHeader String token) {
+		return adminService.addProfilePath(id, profilePath,token);
     }
 }
