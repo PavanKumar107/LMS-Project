@@ -3,6 +3,8 @@ import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import com.blz.lms.dto.CandidateDTO;
@@ -11,7 +13,6 @@ import lombok.Data;
 @Entity
 @Table(name="candidate")
 @Data
-
 public class CandidateModel {
 	@Id
 	@GenericGenerator(name = "candidate", strategy = "increment")
@@ -33,6 +34,8 @@ public class CandidateModel {
 	private String candidateStatus;
 	private LocalDateTime creationTimeStamp;
 	private LocalDateTime updatedTimeStamp;
+	@OneToOne
+	private TechStackModel techstackModel;
 
 	public CandidateModel() {
 

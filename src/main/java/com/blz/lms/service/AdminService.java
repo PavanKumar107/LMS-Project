@@ -151,7 +151,6 @@ public class AdminService implements IAdminService{
 			String subject = "Profile path added Successfully";
 			mailService.send(isAdminPresent.get().getEmailId(), subject, body);
 			return isAdminPresent.get();
-
 		}
 		throw new AdminNotFoundException(400,"Admin not present");
 	}

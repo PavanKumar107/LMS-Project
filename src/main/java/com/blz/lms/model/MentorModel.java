@@ -34,7 +34,7 @@ public class MentorModel {
 	private long supervisorId;
 	private LocalDateTime createdTimeStamp;
 	private LocalDateTime updatedTimeStamp;
-	
+
 	public MentorModel() {
 
 	}

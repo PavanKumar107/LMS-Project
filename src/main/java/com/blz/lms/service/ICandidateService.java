@@ -5,7 +5,7 @@ import com.blz.lms.model.CandidateModel;
 
 public interface ICandidateService {
 
-	CandidateModel addCandidate(CandidateDTO candidateDTO,String token);
+	CandidateModel addCandidate(CandidateDTO candidateDTO,String token,Long id);
 
 	CandidateModel updateCandidate(CandidateDTO candidateDTO,Long id,String token);
 

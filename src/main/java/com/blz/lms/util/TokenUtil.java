@@ -1,5 +1,4 @@
 package com.blz.lms.util;
-
 import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;

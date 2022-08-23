@@ -18,6 +18,11 @@ import com.blz.lms.dto.CandidateDTO;
 import com.blz.lms.model.CandidateModel;
 import com.blz.lms.service.ICandidateService;
 
+/**
+ * Purpose: candidate controller to process candidate Data APIs.
+ * @version: 4.15.1.RELEASE
+ * @author: Pavan Kumar G V  
+ */
 @RestController
 @RequestMapping("/candidate")
 public class CandidateController {
@@ -25,37 +30,64 @@ public class CandidateController {
 	@Autowired
 	ICandidateService candidateService;
 
+	/**
+	 * Purpose: To create Candidate
+	 * @Param: candidateDTO,token and id
+	 */
 	@PostMapping("/addcandidate")
-	public CandidateModel addCandidate(@Valid@RequestBody CandidateDTO candidateDTO,@RequestHeader String token) {
-		return candidateService.addCandidate(candidateDTO,token);
+	public CandidateModel addCandidate(@Valid@RequestBody CandidateDTO candidateDTO,@RequestHeader String token,@RequestParam Long id) {
+		return candidateService.addCandidate(candidateDTO,token,id);
 	}
 
+	/**
+	 * Purpose: To update Candidate details by id
+	 * @Param: candidateDTO,token and id
+	 */
 	@PutMapping("/updatecandidate/{id}")
 	public CandidateModel updateCandidate(@Valid@RequestBody CandidateDTO candidateDTO,@PathVariable Long id,@RequestHeader String token) {
 		return candidateService.updateCandidate(candidateDTO, id, token);
 	}
 
+	/**
+	 * Purpose: To get Candidate details by id
+	 * @Param: token
+	 */
 	@GetMapping("/getallcandidates")
 	public List<CandidateModel> getAllCandidates(@RequestHeader String token) {
 		return candidateService.getAllCandidates(token);
 	}
 
+	/**
+	 * Purpose: To delete Candidate details by id
+	 * @Param: id and token
+	 */
 	@DeleteMapping("/deletecandidate/{id}")
 	public CandidateModel deleteCandidate(@PathVariable Long id,@RequestHeader String token) {
 		return candidateService.deleteCandidate(id, token);
 	}
 
+	/**
+	 * Purpose: To get candidate details by status
+	 * @Param: status and token
+	 */
 	@GetMapping("/getbystatus/{status}")
 	public List<CandidateModel> getCandidateByStatus(@PathVariable String status,@RequestHeader String token){
 		return candidateService.getCandidateByStatus(status,token);
 	}
 
+	/**
+	 * Purpose: To change candidate status by id
+	 * @Param: id, status and token
+	 */
 	@PutMapping("/changestatus/{id}")
 	public CandidateModel ChangeStatus(@Valid@PathVariable Long id,@RequestParam String status,@RequestHeader String token) {
 		return candidateService.ChangeStatus(id,status,token);
 	}
 	
-	
+	/**
+	 * Purpose: To get count of status
+	 * @Param: status and token
+	 */
 	@GetMapping("/getstatuscount")
 	public long statusCount(@RequestParam String status,@RequestHeader String token) {
 		return candidateService.statusCount(status, token);

@@ -93,15 +93,19 @@ public class MentorService implements IMentorService {
 	@Override
 	public MentorModel deleteMentor(Long id, String token) {
 		Long admId = tokenUtil.decodeToken(token);
-		Optional<MentorModel> isMentorPresent = mentorRepository.findById(id);
-		if(isMentorPresent.isPresent()) {
-			mentorRepository.delete(isMentorPresent.get());
-			String body = "Mentor deleted successfully with Mentor Id"+isMentorPresent.get().getId();
-			String subject = "Mentor deleted Successfully";
-			mailService.send(isMentorPresent.get().getEmail(), subject, body);
-			return isMentorPresent.get();
+		Optional<AdminModel> isTokenPresent = adminRepository.findById(admId);
+		if(isTokenPresent.isPresent()) {
+			Optional<MentorModel> isMentorPresent = mentorRepository.findById(id);
+			if(isMentorPresent.isPresent()) {
+				mentorRepository.delete(isMentorPresent.get());
+				String body = "Mentor deleted successfully with Mentor Id"+isMentorPresent.get().getId();
+				String subject = "Mentor deleted Successfully";
+				mailService.send(isMentorPresent.get().getEmail(), subject, body);
+				return isMentorPresent.get();
+			}
+			throw new AdminNotFoundException(400,"Mentor not present");
 		}
-		throw new AdminNotFoundException(400,"Mentor not present");
+		throw new AdminNotFoundException(400,"Token not present");
 	}
 
 	@Override

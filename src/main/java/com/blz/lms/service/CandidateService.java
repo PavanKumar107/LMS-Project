@@ -7,8 +7,10 @@ import com.blz.lms.dto.CandidateDTO;
 import com.blz.lms.exception.AdminNotFoundException;
 import com.blz.lms.model.AdminModel;
 import com.blz.lms.model.CandidateModel;
+import com.blz.lms.model.TechStackModel;
 import com.blz.lms.repository.AdminRepository;
 import com.blz.lms.repository.CandidateRepository;
+import com.blz.lms.repository.TechStackRepository;
 import com.blz.lms.util.TokenUtil;
 
 @Service
@@ -25,12 +27,19 @@ public class CandidateService implements ICandidateService {
 	@Autowired
 	TokenUtil tokenUtil;
 
+	@Autowired
+	TechStackRepository techStackRepository;
+
 	@Override
-	public CandidateModel addCandidate(CandidateDTO candidateDTO,String token) {
+	public CandidateModel addCandidate(CandidateDTO candidateDTO,String token,Long id) {
 		Long admId = tokenUtil.decodeToken(token);
 		Optional<AdminModel> isTokenPresent = adminRepository.findById(admId);
 		if(isTokenPresent.isPresent()) {
+			Optional<TechStackModel> isTechIdPresent = techStackRepository.findById(id);
 			CandidateModel model = new CandidateModel(candidateDTO);
+			if(isTechIdPresent.isPresent()) {
+				model.setTechstackModel(isTechIdPresent.get());
+			}
 			candidateRepository.save(model);
 			String body = "Candidate added successfully with candidateId"+model.getId();
 			String subject = "Candidate Registration Successfull";
@@ -45,7 +54,7 @@ public class CandidateService implements ICandidateService {
 		Long admId = tokenUtil.decodeToken(token);
 		Optional<AdminModel> isTokenPresent = adminRepository.findById(admId);
 		if(isTokenPresent.isPresent()) {
-			Optional<CandidateModel>isCandidatePresent = candidateRepository.findById(id);
+			Optional<CandidateModel> isCandidatePresent = candidateRepository.findById(id);
 			if(isCandidatePresent.isPresent()) {
 				isCandidatePresent.get().setCicId(candidateDTO.getCicId());
 				isCandidatePresent.get().setFullName(candidateDTO.getFullName());
@@ -91,7 +100,7 @@ public class CandidateService implements ICandidateService {
 	@Override
 	public CandidateModel deleteCandidate(Long id, String token) {
 		Long admId = tokenUtil.decodeToken(token);
-		Optional<CandidateModel > isCandidatePresent = candidateRepository.findById(id);
+		Optional<CandidateModel> isCandidatePresent = candidateRepository.findById(id);
 		if(isCandidatePresent.isPresent()) {
 			candidateRepository.delete(isCandidatePresent.get());
 			String body = "Candidate deleted successfully with candidateId"+isCandidatePresent.get().getId();
@@ -105,7 +114,7 @@ public class CandidateService implements ICandidateService {
 	@Override
 	public List<CandidateModel> getCandidateByStatus(String status,String token) {
 		Long admId = tokenUtil.decodeToken(token);
-		Optional<AdminModel>isTokenPresent = adminRepository.findById(admId);
+		Optional<AdminModel> isTokenPresent = adminRepository.findById(admId);
 		if(isTokenPresent.isPresent()) {
 			List<CandidateModel> isStatusPresent = candidateRepository.getCandidateByStatus(status);
 			if(isStatusPresent.size() > 0) {
