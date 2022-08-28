@@ -1,0 +1,8 @@
+id,cicId,fullName,email,mobileNum,hiredDate,degree,aggrPer,city,state,preferredJobLocation,status,passedOutYear,createrUser,candidateStatus
+45,11,PavanKumar,gvpavan@gmail.com,7898765654,13,BE,70,Bangalore,Karnataka,Bangalore,Completed,2021,Abc,Single
+46,76,Rakesh,rakesh@gmail.com,7874854756,23,Bsc,66,Mysore,Karnataka,Chennai,Remapped,2020,def,Single
+47,33,Kumar,kumar@gmail.com,876456577,12,BE,88,chennai,Tamilnadu,Bangalore,Completed,2012,hij,Married
+48,34,Rocky,rocky@gmail.com,6787878565,5,Bsc,66,Hydrabad,Andrapradesh,Hydrabad,Inprogress,2012,klm,Married
+49,22,Mutant,mutant@gmail.com,789767898,15,BE,78,Bangalore,Karnataka,Bangalore,Completed,2018,fgh,Single
+50,32,abd,ad@gmail.om,7656754323,12,BE,99,Mysore,Karnataka,Bangalore,Remapped,2019,jnb,Single
+51,22,karthik,karthik@gmail.com,8877272872,13,BE,76,Chintamani,Karnataka,mysore,Completed,2021,ret,Married

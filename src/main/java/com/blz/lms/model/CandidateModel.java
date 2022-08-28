@@ -1,5 +1,7 @@
 package com.blz.lms.model;
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,25 +19,43 @@ public class CandidateModel {
 	@Id
 	@GenericGenerator(name = "candidate", strategy = "increment")
 	@GeneratedValue(generator = "candidate")
+	@Column(name = "CANDIDATE_ID")
 	private Long id;
+	@Column(name = "CICID")
 	private String cicId;
+	@Column(name = "FULLNAME")
 	private String fullName;
+	@Column(name = "EMAIL")
 	private String email;
+	@Column(name = "MOBILENO")
 	private String mobileNum;
+	@Column(name = "HIREDDATE")
 	private String hiredDate;
+	@Column(name = "DEGREE")
 	private String degree;
+	@Column(name = "AGGRPER")
 	private Double aggrPer;
+	@Column(name = "CITY")
 	private String city;
+	@Column(name = "STATE")
 	private String state;
+	@Column(name = "PREFERREDJOBLOCATION")
 	private String preferredJobLocation;
+	@Column(name = "STATUS")
 	private String status;
+	@Column(name = "PASSEDOUTYEAR")
 	private String passedOutYear;
+	@Column(name = "CREATERUSER")
 	private String creatorUser;
+	@Column(name = "CANDIDATESTATUS")
 	private String candidateStatus;
+
 	private LocalDateTime creationTimeStamp;
+	
 	private LocalDateTime updatedTimeStamp;
 	@OneToOne
 	private TechStackModel techstackModel;
+	
 
 	public CandidateModel() {
 
